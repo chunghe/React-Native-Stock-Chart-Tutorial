@@ -28,6 +28,7 @@ class HomeScreen extends React.Component {
       <ScrollView contentContainerStyle={styles.container}>
         {tutorials.map(tutorial => (
           <TouchableOpacity
+            key={tutorial.title}
             style={styles.row}
             onPress={() => {
               this.navigate("Detail", tutorial.title, tutorial.toRender);

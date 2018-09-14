@@ -45,7 +45,6 @@ class PieChart extends Component {
     const data = [1, 2, 3, 4, 5];
     const arcs = d3Shape.pie()(data);
 
-    console.log("arcs", JSON.stringify(arcs));
     const paths = arcs.map(arcData =>
       d3Shape
         .arc()
@@ -97,7 +96,7 @@ produces:
         <Svg height={Radius * 2} width={deviceWidth}>
           <G x={deviceWidth / 2} y={Radius}>
             {paths.map((path, index) => (
-              <Path fill={PieColors[index]} d={path} />
+              <Path key={index} fill={PieColors[index]} d={path} />
             ))}
           </G>
         </Svg>
@@ -113,7 +112,7 @@ arcs.map(arcData =>
         <Svg height={Radius * 2} width={deviceWidth}>
           <G x={deviceWidth / 2} y={Radius}>
             {pathsWithDifferentRadius.map((path, index) => (
-              <Path fill={PieColors[index]} d={path} />
+              <Path key={index} fill={PieColors[index]} d={path} />
             ))}
           </G>
         </Svg>

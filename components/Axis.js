@@ -52,7 +52,7 @@ const ticks = scale.ticks(numberOfTicks);
             stroke="#ccc"
           />
           {ticks.map(tick => (
-            <G y={50} x={scale(tick)}>
+            <G x={scale(tick)} y={50} key={tick}>
               <Line strokeWidth="1" stroke="#999" x1={0} y1={0} x2={0} y2={5} />
               <SvgText y={5 + 10} textAnchor="middle">
                 {tick}
