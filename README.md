@@ -11,7 +11,7 @@ A simple demostration to draw stock charts and pie charts using `react-native-sv
 
 ## Screenshots
 
-![table of content](./screenshots/lists.png | width=200)
-![stock chart](./screenshots/stockchart.png | width=200)
-![candlestick chart](./screenshots/candlestickchart.png | width=200)
-![pie chart](./screenshots/piechart.png | width=200)
+![table of content](./screenshots/lists.png)
+![stock chart](./screenshots/stockchart.png)
+![candlestick chart](./screenshots/candlestickchart.png)
+![pie chart](./screenshots/piechart.png)
