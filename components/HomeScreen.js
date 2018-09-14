@@ -14,9 +14,9 @@ class HomeScreen extends React.Component {
     title: "Chart Tutorial"
   };
 
-  navigate = (routeName, toRender) => {
+  navigate = (routeName, title, toRender) => {
     this.props.navigation.navigate(routeName, {
-      title: "SVG Basics",
+      title,
       toRender
     });
   };
@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
         {tutorials.map(tutorial => (
           <TouchableOpacity
             onPress={() => {
-              this.navigate("Detail", tutorial.toRender);
+              this.navigate("Detail", tutorial.title, tutorial.toRender);
             }}
           >
             <Text>{tutorial.title}</Text>
