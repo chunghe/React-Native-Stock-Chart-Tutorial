@@ -14,6 +14,7 @@ class Code extends Component {
 
 const styles = StyleSheet.create({
   code: {
+    marginTop: 5,
     backgroundColor: "#efefef"
   },
   codeText: {

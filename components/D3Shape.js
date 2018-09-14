@@ -39,21 +39,6 @@ class D3Shape extends Component {
       <ScrollView style={styles.container}>
         <T>- To draw more complicated chart, you will need d3Shape</T>
         <T>- Arcs/Pie/Lines/Areas/Curves/Stacks, etc</T>
-        <T>Example:</T>
-        <Code>
-          {`
-	import * as d3Shape from 'd3-shape';
-
-	var arc = d3Shape.arc()
-			.innerRadius(0)
-			.outerRadius(100)
-			.startAngle(0)
-			.endAngle(Math.PI / 2);
-
-	arc();
-	// "M0,-100A100,100,0,0,1,100,0L0,0Z"
-				`}
-        </Code>
         <T>
           - For stock chart, only needed D3Shape.line()/D3Shape.area() function
         </T>
