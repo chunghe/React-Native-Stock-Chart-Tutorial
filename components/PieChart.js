@@ -7,7 +7,8 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
-import Svg, { Path } from "react-native-svg";
+import Svg, { G, Path } from "react-native-svg";
+import * as d3Shape from "d3-shape";
 
 import T from "./T";
 import Code from "./Code";
@@ -15,25 +16,113 @@ import CopyRight from "./CopyRight";
 
 const deviceWidth = Dimensions.get("window").width;
 
+const PieColors = [
+  "rgb(49, 109, 253)",
+  "rgb(42, 225, 167)",
+  "rgb(0, 196, 244)",
+  "rgb(226, 249, 100)",
+  "rgb(69, 248, 251)",
+  "rgb(119, 93, 218)",
+  "rgb(255, 61, 166)",
+  "rgb(163, 204, 236)"
+];
+
+const Radius = 100;
+
+const arcRadius = [
+  Radius,
+  Radius * 0.95,
+  Radius * 0.9025, //  radius * 0.95 * 0.95,
+  Radius * 0.875425, //  radius * 0.95 * 0.95 * 0.97,
+  Radius * 0.84916225, // radius * 0.95 * 0.95 * 0.97 * 0.97,
+  Radius * 0.832179005, // radius * 0.95 * 0.95 * 0.97 * 0.97 * 0.98,
+  Radius * 0.8155354249, // radius * 0.95 * 0.95 * 0.97 * 0.97 * 0.98 * 0.98,
+  Radius * 0.80738007065 // radius * 0.95 * 0.95 * 0.97 * 0.97 * 0.98 * 0.98 * 0.99,
+];
+
 class PieChart extends Component {
   render() {
+    const data = [1, 2, 3, 4, 5];
+    const arcs = d3Shape.pie()(data);
+
+    const paths = arcs.map(arcData =>
+      d3Shape
+        .arc()
+        .outerRadius(Radius)
+        .innerRadius(0)(arcData)
+    );
+
+    const pathsWithDifferentRadius = arcs.map(arcData =>
+      d3Shape
+        .arc()
+        .outerRadius(({ index }) => arcRadius[index])
+        .innerRadius(0)(arcData)
+    );
+
+    /*
+    const paths = arcs.map(arc =>
+      d3Shape
+        .arc()
+        .outerRadius(({ index }) => this.arcRadius[index])
+        .innerRadius(innerRadius)(arc)
+    );
+*/
+
     return (
-      <ScrollView>
-        <T>Example:</T>
-        <Code>
-          {`
-	import * as d3Shape from 'd3-shape';
+      <ScrollView style={styles.container}>
+        <T>1. use D3Shape.pie to prepare data for D3Shape.arc to render</T>
+        <Code>{`
 
-	var arc = d3Shape.arc()
-			.innerRadius(0)
-			.outerRadius(100)
-			.startAngle(0)
-			.endAngle(Math.PI / 2);
+  const data = [1,2,3,4,5];
+  const arcs = d3Shape.pie()(data);
 
-	arc();
-	// "M0,-100A100,100,0,0,1,100,0L0,0Z"
-				`}
-        </Code>
+produces:
+  [
+    {"data":1,"index":2,"value":1,"startAngle":5.235987755982988,"endAngle":6.283185307179585,"padAngle":0},
+    {"data":2,"index":1,"value":2,"startAngle":3.141592653589793,"endAngle":5.235987755982988,"padAngle":0},
+    {"data":3,"index":0,"value":3,"startAngle":0,"endAngle":3.141592653589793,"padAngle":0}
+  ]
+`}</Code>
+
+        <Code>{`
+
+const paths = 
+  arcs.map(arcData => 
+    d3Shape
+      .arc()
+      .outerRadius(Radius)
+      .innerRadius(0)(arcData))
+
+produces:
+  [
+    "M-86.6025403784439,-49.999999999999936A100,100,0,0,1,-1.0718754395722282e-13,-100L0,0Z", 
+    "M6.123233995736766e-15,100A100,100,0,0,1,-86.6025403784439,-49.999999999999936L0,0Z", 
+    "M6.123233995736766e-15,-100A100,100,0,1,1,6.123233995736766e-15,100L0,0Z"
+  ]
+`}</Code>
+        <Svg height={Radius * 2} width={deviceWidth}>
+          <G x={deviceWidth / 2} y={Radius}>
+            {paths.map((path, index) => (
+              <Path fill={PieColors[index]} d={path} />
+            ))}
+          </G>
+        </Svg>
+        <T heading>Pie chart with different radius</T>
+        <Code>{`
+arcs.map(arcData => 
+  d3Shape
+    .arc()
+    .outerRadius(({i}) => arcRadius[i])
+    .innerRadius(0)(arcData))
+`}</Code>
+
+        <Svg height={Radius * 2} width={deviceWidth}>
+          <G x={deviceWidth / 2} y={Radius}>
+            {pathsWithDifferentRadius.map((path, index) => (
+              <Path fill={PieColors[index]} d={path} />
+            ))}
+          </G>
+        </Svg>
       </ScrollView>
     );
   }
