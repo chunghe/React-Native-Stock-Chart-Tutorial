@@ -11,7 +11,7 @@ import tutorials from "../constants/tutorials";
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: "Chart Tutorial"
+    title: "Tutorials"
   };
 
   navigate = (routeName, title, toRender) => {
@@ -28,6 +28,7 @@ class HomeScreen extends React.Component {
       <ScrollView contentContainerStyle={styles.container}>
         {tutorials.map(tutorial => (
           <TouchableOpacity
+            style={styles.row}
             onPress={() => {
               this.navigate("Detail", tutorial.title, tutorial.toRender);
             }}
@@ -44,6 +45,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff"
+  },
+  row: {
+    padding: 20,
+    borderStyle: "solid",
+    borderColor: "#ccc",
+    borderBottomWidth: 1
   }
 });
 

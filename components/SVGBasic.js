@@ -64,7 +64,7 @@ class SVGBasic extends Component {
         <Code>
           {`
   $ npm install react-native-svg
-  $ rnpm link react-native-svg
+  $ react-native link react-native-svg
         `}
         </Code>
 
