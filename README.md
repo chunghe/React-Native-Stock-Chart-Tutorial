@@ -5,9 +5,10 @@ A simple demostration to draw stock charts and pie charts using `react-native-sv
 ## How to run
 
 1. exp start
-2. running on device or simulator
-   2.1 `ios start` if you want to run on simulator
-   2.2 scan the QR code to run on device
+
+then you could
+- `ios start` if you want to run on simulator
+- scan the QR code to run on device
 
 ## Screenshots
 
