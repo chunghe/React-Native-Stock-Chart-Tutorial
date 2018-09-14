@@ -45,6 +45,7 @@ class PieChart extends Component {
     const data = [1, 2, 3, 4, 5];
     const arcs = d3Shape.pie()(data);
 
+    console.log("arcs", JSON.stringify(arcs));
     const paths = arcs.map(arcData =>
       d3Shape
         .arc()
@@ -59,15 +60,6 @@ class PieChart extends Component {
         .innerRadius(0)(arcData)
     );
 
-    /*
-    const paths = arcs.map(arc =>
-      d3Shape
-        .arc()
-        .outerRadius(({ index }) => this.arcRadius[index])
-        .innerRadius(innerRadius)(arc)
-    );
-*/
-
     return (
       <ScrollView style={styles.container}>
         <T>1. use D3Shape.pie to prepare data for D3Shape.arc to render</T>
@@ -77,10 +69,12 @@ class PieChart extends Component {
   const arcs = d3Shape.pie()(data);
 
 produces:
-  [
-    {"data":1,"index":2,"value":1,"startAngle":5.235987755982988,"endAngle":6.283185307179585,"padAngle":0},
-    {"data":2,"index":1,"value":2,"startAngle":3.141592653589793,"endAngle":5.235987755982988,"padAngle":0},
-    {"data":3,"index":0,"value":3,"startAngle":0,"endAngle":3.141592653589793,"padAngle":0}
+
+[
+  {"data":1,"index":4,"value":1,"startAngle":5.8643062867009474,"endAngle":6.283185307179586,"padAngle":0},
+  {"data":2,"index":3,"value":2,"startAngle":5.026548245743669,"endAngle":5.8643062867009474,"padAngle":0},
+  {"data":3,"index":2,"value":3,"startAngle":3.7699111843077517,"endAngle":5.026548245743669,"padAngle":0},
+  ...
   ]
 `}</Code>
 

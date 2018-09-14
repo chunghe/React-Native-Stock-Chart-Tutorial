@@ -12,8 +12,8 @@ const tutorials = [
   { title: "D3 Scale", toRender: D3Scale },
   { title: "D3 Shape", toRender: D3Shape },
   { title: "Axis", toRender: Axis },
-  { title: "CandleStick Chart", toRender: CandleStick },
-  { title: "Pie Chart", toRender: PieChart }
+  { title: "Pie Chart", toRender: PieChart },
+  { title: "CandleStick Chart", toRender: CandleStick }
 ];
 
 export default tutorials;

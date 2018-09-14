@@ -32,6 +32,7 @@ class Axis extends Component {
       <ScrollView style={styles.container}>
         <T heading>Generating ticks</T>
         <T>scale.ticks(numberOfTicks): 產生 nice ticks</T>
+        <T>背後是去呼叫 d3Array.ticks(start, stop, count)</T>
         <Code>{`
 const domain = [8210, 8276];
 const range = [0, deviceWidth];
@@ -39,7 +40,6 @@ const scale = d3Scale.scaleLinear().domain(domain).range(range);
 const numberOfTicks = 5;
 const ticks = scale.ticks(numberOfTicks); 
 // [8210, 8220, 8230, 8240, 8250, 8260, 8270]
-// d3Array.ticks(start, stop, count)
           `}</Code>
         <T heading>Rendering ticks</T>
         <Svg width={deviceWidth} height="100">
