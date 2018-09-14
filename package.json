@@ -12,22 +12,18 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "jest"
+    "precommit": "pretty-quick --staged"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
+    "d3-array": "^1.2.4",
+    "d3-scale": "^2.1.2",
+    "d3-shape": "^1.2.2",
     "expo": "^27.0.1",
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-navigation": "^2.14.0"
-  },
-  "scripts": {
-    "precommit": "pretty-quick --staged"
   }
 }
